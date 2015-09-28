@@ -4,7 +4,7 @@
 #
 Name     : gawk
 Version  : 4.1.3
-Release  : 17
+Release  : 18
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
 Summary  : No detailed summary available
