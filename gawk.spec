@@ -4,13 +4,14 @@
 #
 Name     : gawk
 Version  : 4.1.3
-Release  : 18
+Release  : 22
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
 Requires: gawk-bin
+Requires: gawk-lib
 Requires: gawk-data
 Requires: gawk-doc
 Requires: gawk-locales
@@ -46,8 +47,10 @@ data components for the gawk package.
 %package dev
 Summary: dev components for the gawk package.
 Group: Development
+Requires: gawk-lib
 Requires: gawk-bin
 Requires: gawk-data
+Provides: gawk-devel
 
 %description dev
 dev components for the gawk package.
@@ -59,6 +62,23 @@ Group: Documentation
 
 %description doc
 doc components for the gawk package.
+
+
+%package extras
+Summary: extras components for the gawk package.
+Group: Default
+
+%description extras
+extras components for the gawk package.
+
+
+%package lib
+Summary: lib components for the gawk package.
+Group: Libraries
+Requires: gawk-data
+
+%description lib
+lib components for the gawk package.
 
 
 %package locales
@@ -77,6 +97,9 @@ locales components for the gawk package.
 make V=1  %{?_smp_mflags}
 
 %check
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -86,18 +109,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/gawk/filefuncs.so
-/usr/lib64/gawk/fnmatch.so
-/usr/lib64/gawk/fork.so
-/usr/lib64/gawk/inplace.so
-/usr/lib64/gawk/ordchr.so
-/usr/lib64/gawk/readdir.so
-/usr/lib64/gawk/readfile.so
-/usr/lib64/gawk/revoutput.so
-/usr/lib64/gawk/revtwoway.so
-/usr/lib64/gawk/rwarray.so
-/usr/lib64/gawk/testext.so
-/usr/lib64/gawk/time.so
 
 %files bin
 %defattr(-,root,root,-)
@@ -109,6 +120,43 @@ rm -rf %{buildroot}
 /usr/libexec/awk/pwcat
 
 %files data
+%defattr(-,root,root,-)
+%exclude /usr/share/awk/assert.awk
+%exclude /usr/share/awk/bits2str.awk
+%exclude /usr/share/awk/cliff_rand.awk
+%exclude /usr/share/awk/ctime.awk
+%exclude /usr/share/awk/ftrans.awk
+%exclude /usr/share/awk/getopt.awk
+%exclude /usr/share/awk/gettime.awk
+%exclude /usr/share/awk/group.awk
+%exclude /usr/share/awk/inplace.awk
+%exclude /usr/share/awk/join.awk
+%exclude /usr/share/awk/libintl.awk
+%exclude /usr/share/awk/noassign.awk
+%exclude /usr/share/awk/ord.awk
+%exclude /usr/share/awk/passwd.awk
+%exclude /usr/share/awk/processarray.awk
+%exclude /usr/share/awk/quicksort.awk
+%exclude /usr/share/awk/readable.awk
+%exclude /usr/share/awk/readfile.awk
+%exclude /usr/share/awk/rewind.awk
+%exclude /usr/share/awk/round.awk
+%exclude /usr/share/awk/shellquote.awk
+%exclude /usr/share/awk/strtonum.awk
+%exclude /usr/share/awk/walkarray.awk
+%exclude /usr/share/awk/zerofile.awk
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/*.h
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/info/*
+%doc /usr/share/man/man1/*
+%doc /usr/share/man/man3/*
+
+%files extras
 %defattr(-,root,root,-)
 /usr/share/awk/assert.awk
 /usr/share/awk/bits2str.awk
@@ -135,15 +183,20 @@ rm -rf %{buildroot}
 /usr/share/awk/walkarray.awk
 /usr/share/awk/zerofile.awk
 
-%files dev
+%files lib
 %defattr(-,root,root,-)
-/usr/include/*.h
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/info/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
+/usr/lib64/gawk/filefuncs.so
+/usr/lib64/gawk/fnmatch.so
+/usr/lib64/gawk/fork.so
+/usr/lib64/gawk/inplace.so
+/usr/lib64/gawk/ordchr.so
+/usr/lib64/gawk/readdir.so
+/usr/lib64/gawk/readfile.so
+/usr/lib64/gawk/revoutput.so
+/usr/lib64/gawk/revtwoway.so
+/usr/lib64/gawk/rwarray.so
+/usr/lib64/gawk/testext.so
+/usr/lib64/gawk/time.so
 
 %files locales -f gawk.lang 
 %defattr(-,root,root,-)
