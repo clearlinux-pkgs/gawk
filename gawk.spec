@@ -4,9 +4,10 @@
 #
 Name     : gawk
 Version  : 4.1.3
-Release  : 22
+Release  : 23
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.xz
+Source1  : gawk.gcov
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.3 GPL-2.0 GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -93,6 +94,10 @@ locales components for the gawk package.
 %setup -q -n gawk-4.1.3
 
 %build
+export CFLAGS="$CFLAGS -fauto-profile=%{SOURCE1} -O3 "
+export FCFLAGS="$CFLAGS -fauto-profile=%{SOURCE1} -O3 "
+export FFLAGS="$CFLAGS -fauto-profile=%{SOURCE1} -O3 "
+export CXXFLAGS="$CXXFLAGS -fauto-profile=%{SOURCE1} -O3 "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
