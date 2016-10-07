@@ -4,7 +4,7 @@
 #
 Name     : gawk
 Version  : 4.1.4
-Release  : 33
+Release  : 34
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
 Source1  : gawk.gcov
@@ -94,10 +94,10 @@ locales components for the gawk package.
 
 %build
 export LANG=C
-export CFLAGS="$CFLAGS -O3 -fauto-profile=%{SOURCE1} "
-export FCFLAGS="$CFLAGS -O3 -fauto-profile=%{SOURCE1} "
-export FFLAGS="$CFLAGS -O3 -fauto-profile=%{SOURCE1} "
-export CXXFLAGS="$CXXFLAGS -O3 -fauto-profile=%{SOURCE1} "
+export CFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
+export FCFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
+export FFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
