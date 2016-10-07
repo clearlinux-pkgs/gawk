@@ -3,7 +3,7 @@
 # desirable. One name per line, no whitespace.
 #
 libc6-locale
-mpfr-dev
+#mpfr-dev
 gmp-dev
 readline-dev
 ncurses-dev
