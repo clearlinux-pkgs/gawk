@@ -4,13 +4,12 @@
 #
 Name     : gawk
 Version  : 4.1.4
-Release  : 38
+Release  : 39
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
-Source1  : gawk.gcov
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.3 GPL-2.0 GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
+License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
 Requires: gawk-bin
 Requires: gawk-lib
 Requires: gawk-data
@@ -93,11 +92,11 @@ locales components for the gawk package.
 %setup -q -n gawk-4.1.4
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export CFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
-export FCFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
-export FFLAGS="$CFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
-export CXXFLAGS="$CXXFLAGS -O3 -Os -fauto-profile=%{SOURCE1} -ffunction-sections "
+export SOURCE_DATE_EPOCH=1508174615
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -105,10 +104,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1508174615
 rm -rf %{buildroot}
 %make_install
 %find_lang gawk
@@ -204,6 +204,6 @@ rm -rf %{buildroot}
 /usr/lib64/gawk/testext.so
 /usr/lib64/gawk/time.so
 
-%files locales -f gawk.lang 
+%files locales -f gawk.lang
 %defattr(-,root,root,-)
 
