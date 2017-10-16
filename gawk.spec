@@ -4,7 +4,7 @@
 #
 Name     : gawk
 Version  : 4.1.4
-Release  : 39
+Release  : 40
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
 Summary  : No detailed summary available
