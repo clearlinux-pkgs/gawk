@@ -1,8 +1,5 @@
 Configure miss: special development options
 Configure miss: z/OS USS compilation
-Configure miss: strerror in -lcposix
-Configure miss: AIX compilation hacks
-Configure miss: Linux/Alpha compilation hacks
 Configure miss: if we are using EBCDIC
 Configure miss: library containing ismod
 Configure miss: libsigsegv
@@ -12,5 +9,7 @@ Configure miss: memset_ulong
 Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
 Configure miss: z/OS USS compilation
 Configure miss: special development options
+Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
+Configure miss: fmod
 Configure miss: GetSystemTimeAsFileTime
 Configure miss: how to get the file descriptor associated with an open DIR*

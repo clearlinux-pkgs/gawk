@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDF597815937EC0D2 (arnold@skeeve.com)
 #
 Name     : gawk
-Version  : 4.1.4
-Release  : 41
-URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
-Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz
-Source99 : http://ftp.gnu.org/gnu/gawk/gawk-4.1.4.tar.xz.sig
+Version  : 4.2.0
+Release  : 42
+URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz
+Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz
+Source99 : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -25,7 +25,7 @@ BuildRequires : ncurses-dev
 BuildRequires : readline-dev
 
 %description
-This is GNU Awk 4.1.4. It is upwardly compatible with Brian Kernighan's
+This is GNU Awk 4.2.0. It is upwardly compatible with Brian Kernighan's
 version of Unix awk.  It is almost completely compliant with the
 2008 POSIX 1003.1 standard for awk. (See the note below about POSIX.)
 
@@ -92,14 +92,14 @@ locales components for the gawk package.
 
 
 %prep
-%setup -q -n gawk-4.1.4
+%setup -q -n gawk-4.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1508183676
+export SOURCE_DATE_EPOCH=1508465789
 %configure --disable-static
 make V=1  %{?_smp_mflags}
 
@@ -111,7 +111,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1508183676
+export SOURCE_DATE_EPOCH=1508465789
 rm -rf %{buildroot}
 %make_install
 %find_lang gawk
@@ -123,8 +123,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/bin/awk
 /usr/bin/gawk
-/usr/bin/gawk-4.1.4
-/usr/bin/igawk
+/usr/bin/gawk-4.2.0
 /usr/libexec/awk/grcat
 /usr/libexec/awk/pwcat
 
@@ -154,6 +153,8 @@ rm -rf %{buildroot}
 %exclude /usr/share/awk/strtonum.awk
 %exclude /usr/share/awk/walkarray.awk
 %exclude /usr/share/awk/zerofile.awk
+/usr/share/awk/have_mpfr.awk
+/usr/share/awk/intdiv0.awk
 
 %files dev
 %defattr(-,root,root,-)
@@ -198,13 +199,13 @@ rm -rf %{buildroot}
 /usr/lib64/gawk/fnmatch.so
 /usr/lib64/gawk/fork.so
 /usr/lib64/gawk/inplace.so
+/usr/lib64/gawk/intdiv.so
 /usr/lib64/gawk/ordchr.so
 /usr/lib64/gawk/readdir.so
 /usr/lib64/gawk/readfile.so
 /usr/lib64/gawk/revoutput.so
 /usr/lib64/gawk/revtwoway.so
 /usr/lib64/gawk/rwarray.so
-/usr/lib64/gawk/testext.so
 /usr/lib64/gawk/time.so
 
 %files locales -f gawk.lang
