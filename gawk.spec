@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 4.2.0
-Release  : 42
+Release  : 43
 URL      : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz
 Source0  : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz
 Source99 : http://ftp.gnu.org/gnu/gawk/gawk-4.2.0.tar.xz.sig
