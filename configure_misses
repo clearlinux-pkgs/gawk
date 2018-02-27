@@ -10,6 +10,5 @@ Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
 Configure miss: z/OS USS compilation
 Configure miss: special development options
 Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
-Configure miss: fmod
 Configure miss: GetSystemTimeAsFileTime
 Configure miss: how to get the file descriptor associated with an open DIR*
