@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 4.2.1
-Release  : 45
+Release  : 46
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz.sig
