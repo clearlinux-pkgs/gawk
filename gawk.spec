@@ -6,18 +6,20 @@
 #
 Name     : gawk
 Version  : 4.2.1
-Release  : 47
+Release  : 48
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
-Requires: gawk-bin
-Requires: gawk-lib
-Requires: gawk-data
-Requires: gawk-doc
-Requires: gawk-locales
+Requires: gawk-bin = %{version}-%{release}
+Requires: gawk-data = %{version}-%{release}
+Requires: gawk-lib = %{version}-%{release}
+Requires: gawk-libexec = %{version}-%{release}
+Requires: gawk-license = %{version}-%{release}
+Requires: gawk-locales = %{version}-%{release}
+Requires: gawk-man = %{version}-%{release}
 BuildRequires : bison
 BuildRequires : gmp-dev
 BuildRequires : libc6-locale
@@ -32,7 +34,10 @@ version of Unix awk.  It is almost completely compliant with the
 %package bin
 Summary: bin components for the gawk package.
 Group: Binaries
-Requires: gawk-data
+Requires: gawk-data = %{version}-%{release}
+Requires: gawk-libexec = %{version}-%{release}
+Requires: gawk-license = %{version}-%{release}
+Requires: gawk-man = %{version}-%{release}
 
 %description bin
 bin components for the gawk package.
@@ -49,10 +54,10 @@ data components for the gawk package.
 %package dev
 Summary: dev components for the gawk package.
 Group: Development
-Requires: gawk-lib
-Requires: gawk-bin
-Requires: gawk-data
-Provides: gawk-devel
+Requires: gawk-lib = %{version}-%{release}
+Requires: gawk-bin = %{version}-%{release}
+Requires: gawk-data = %{version}-%{release}
+Provides: gawk-devel = %{version}-%{release}
 
 %description dev
 dev components for the gawk package.
@@ -61,6 +66,7 @@ dev components for the gawk package.
 %package doc
 Summary: doc components for the gawk package.
 Group: Documentation
+Requires: gawk-man = %{version}-%{release}
 
 %description doc
 doc components for the gawk package.
@@ -77,10 +83,29 @@ extras components for the gawk package.
 %package lib
 Summary: lib components for the gawk package.
 Group: Libraries
-Requires: gawk-data
+Requires: gawk-data = %{version}-%{release}
+Requires: gawk-libexec = %{version}-%{release}
+Requires: gawk-license = %{version}-%{release}
 
 %description lib
 lib components for the gawk package.
+
+
+%package libexec
+Summary: libexec components for the gawk package.
+Group: Default
+Requires: gawk-license = %{version}-%{release}
+
+%description libexec
+libexec components for the gawk package.
+
+
+%package license
+Summary: license components for the gawk package.
+Group: Default
+
+%description license
+license components for the gawk package.
 
 
 %package locales
@@ -91,6 +116,14 @@ Group: Default
 locales components for the gawk package.
 
 
+%package man
+Summary: man components for the gawk package.
+Group: Default
+
+%description man
+man components for the gawk package.
+
+
 %prep
 %setup -q -n gawk-4.2.1
 
@@ -99,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519704395
+export SOURCE_DATE_EPOCH=1541450125
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -111,10 +144,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1519704395
+export SOURCE_DATE_EPOCH=1541450125
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/gawk
+cp COPYING %{buildroot}/usr/share/package-licenses/gawk/COPYING
+cp extension/COPYING %{buildroot}/usr/share/package-licenses/gawk/extension_COPYING
+cp missing_d/COPYING.LIB %{buildroot}/usr/share/package-licenses/gawk/missing_d_COPYING.LIB
 %make_install
 %find_lang gawk
+## install_append content
+ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -124,8 +164,6 @@ rm -rf %{buildroot}
 /usr/bin/awk
 /usr/bin/gawk
 /usr/bin/gawk-4.2.1
-/usr/libexec/awk/grcat
-/usr/libexec/awk/pwcat
 
 %files data
 %defattr(-,root,root,-)
@@ -159,12 +197,21 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
+/usr/share/man/man3/filefuncs.3am
+/usr/share/man/man3/fnmatch.3am
+/usr/share/man/man3/fork.3am
+/usr/share/man/man3/inplace.3am
+/usr/share/man/man3/ordchr.3am
+/usr/share/man/man3/readdir.3am
+/usr/share/man/man3/readfile.3am
+/usr/share/man/man3/revoutput.3am
+/usr/share/man/man3/revtwoway.3am
+/usr/share/man/man3/rwarray.3am
+/usr/share/man/man3/time.3am
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/info/*
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
 
 %files extras
 %defattr(-,root,root,-)
@@ -207,6 +254,22 @@ rm -rf %{buildroot}
 /usr/lib64/gawk/revtwoway.so
 /usr/lib64/gawk/rwarray.so
 /usr/lib64/gawk/time.so
+
+%files libexec
+%defattr(-,root,root,-)
+/usr/libexec/awk/grcat
+/usr/libexec/awk/pwcat
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/gawk/COPYING
+/usr/share/package-licenses/gawk/extension_COPYING
+/usr/share/package-licenses/gawk/missing_d_COPYING.LIB
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/awk.1
+/usr/share/man/man1/gawk.1
 
 %files locales -f gawk.lang
 %defattr(-,root,root,-)
