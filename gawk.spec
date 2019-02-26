@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 4.2.1
-Release  : 49
+Release  : 50
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz
 Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-4.2.1.tar.xz.sig
@@ -27,9 +27,13 @@ BuildRequires : ncurses-dev
 BuildRequires : readline-dev
 
 %description
-This is GNU Awk 4.2.1. It is upwardly compatible with Brian Kernighan's
-version of Unix awk.  It is almost completely compliant with the
-2008 POSIX 1003.1 standard for awk. (See the note below about POSIX.)
+Fri Aug 25 13:23:06 IDT 2006
+============================
+The files memmove.c, mktime.c, snprintf.c, strerror.c, strftime.c,
+strncasecmp.c, and system.c are copyright by the Free Software
+Foundation. They are licensed under the GPL or the LGPL. See the
+COPYING.LIB file in this directory and the COPYING file in the parent
+directory for licensing information.
 
 %package bin
 Summary: bin components for the gawk package.
@@ -37,7 +41,6 @@ Group: Binaries
 Requires: gawk-data = %{version}-%{release}
 Requires: gawk-libexec = %{version}-%{release}
 Requires: gawk-license = %{version}-%{release}
-Requires: gawk-man = %{version}-%{release}
 
 %description bin
 bin components for the gawk package.
@@ -57,7 +60,9 @@ Group: Development
 Requires: gawk-lib = %{version}-%{release}
 Requires: gawk-bin = %{version}-%{release}
 Requires: gawk-data = %{version}-%{release}
+Requires: gawk-man = %{version}-%{release}
 Provides: gawk-devel = %{version}-%{release}
+Requires: gawk = %{version}-%{release}
 
 %description dev
 dev components for the gawk package.
@@ -132,7 +137,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545847140
+export SOURCE_DATE_EPOCH=1551150310
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -144,7 +149,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1545847140
+export SOURCE_DATE_EPOCH=1551150310
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp COPYING %{buildroot}/usr/share/package-licenses/gawk/COPYING
