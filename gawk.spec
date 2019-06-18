@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDF597815937EC0D2 (arnold@skeeve.com)
 #
 Name     : gawk
-Version  : 5.0.0
-Release  : 52
-URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.0.tar.xz
-Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.0.tar.xz
-Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.0.tar.xz.sig
+Version  : 5.0.1
+Release  : 53
+URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
+Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
+Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -61,6 +61,7 @@ Requires: gawk-lib = %{version}-%{release}
 Requires: gawk-bin = %{version}-%{release}
 Requires: gawk-data = %{version}-%{release}
 Provides: gawk-devel = %{version}-%{release}
+Requires: gawk = %{version}-%{release}
 Requires: gawk = %{version}-%{release}
 
 %description dev
@@ -129,14 +130,22 @@ man components for the gawk package.
 
 
 %prep
-%setup -q -n gawk-5.0.0
+%setup -q -n gawk-5.0.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555079027
+export SOURCE_DATE_EPOCH=1560894776
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -148,7 +157,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1555079027
+export SOURCE_DATE_EPOCH=1560894776
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp COPYING %{buildroot}/usr/share/package-licenses/gawk/COPYING
@@ -167,7 +176,7 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 %defattr(-,root,root,-)
 /usr/bin/awk
 /usr/bin/gawk
-/usr/bin/gawk-5.0.0
+/usr/bin/gawk-5.0.1
 
 %files data
 %defattr(-,root,root,-)
