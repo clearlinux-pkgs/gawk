@@ -1,6 +1,9 @@
 Configure miss: special development options
 Configure miss: z/OS USS compilation
 Configure miss: if we are using EBCDIC
+Configure miss: stropts.h usability
+Configure miss: stropts.h presence
+Configure miss: stropts.h
 Configure miss: library containing ismod
 Configure miss: libsigsegv
 Configure miss: __etoa_l

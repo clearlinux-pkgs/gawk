@@ -6,10 +6,10 @@
 #
 Name     : gawk
 Version  : 5.0.1
-Release  : 53
+Release  : 54
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
-Source99 : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz.sig
+Source1 : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -27,13 +27,9 @@ BuildRequires : ncurses-dev
 BuildRequires : readline-dev
 
 %description
-Fri Aug 25 13:23:06 IDT 2006
-============================
-The files memmove.c, mktime.c, snprintf.c, strerror.c, strftime.c,
-strncasecmp.c, and system.c are copyright by the Free Software
-Foundation. They are licensed under the GPL or the LGPL. See the
-COPYING.LIB file in this directory and the COPYING file in the parent
-directory for licensing information.
+This is GNU Awk 5.0.1. It is upwardly compatible with Brian Kernighan's
+version of Unix awk.  It is almost completely compliant with the
+2018 POSIX 1003.1 standard for awk. (See the note below about POSIX.)
 
 %package bin
 Summary: bin components for the gawk package.
@@ -61,7 +57,6 @@ Requires: gawk-lib = %{version}-%{release}
 Requires: gawk-bin = %{version}-%{release}
 Requires: gawk-data = %{version}-%{release}
 Provides: gawk-devel = %{version}-%{release}
-Requires: gawk = %{version}-%{release}
 Requires: gawk = %{version}-%{release}
 
 %description dev
@@ -136,8 +131,8 @@ man components for the gawk package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560894776
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571202677
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -150,19 +145,19 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1560894776
+export SOURCE_DATE_EPOCH=1571202677
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
-cp COPYING %{buildroot}/usr/share/package-licenses/gawk/COPYING
-cp extension/COPYING %{buildroot}/usr/share/package-licenses/gawk/extension_COPYING
-cp missing_d/COPYING.LIB %{buildroot}/usr/share/package-licenses/gawk/missing_d_COPYING.LIB
+cp %{_builddir}/gawk-5.0.1/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/gawk-5.0.1/extension/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/gawk-5.0.1/missing_d/COPYING.LIB %{buildroot}/usr/share/package-licenses/gawk/0e8e850b0580fbaaa0872326cb1b8ad6adda9b0d
 %make_install
 %find_lang gawk
 ## install_append content
@@ -180,37 +175,13 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 
 %files data
 %defattr(-,root,root,-)
-%exclude /usr/share/awk/assert.awk
-%exclude /usr/share/awk/bits2str.awk
-%exclude /usr/share/awk/cliff_rand.awk
-%exclude /usr/share/awk/ctime.awk
-%exclude /usr/share/awk/ftrans.awk
-%exclude /usr/share/awk/getopt.awk
-%exclude /usr/share/awk/gettime.awk
-%exclude /usr/share/awk/group.awk
-%exclude /usr/share/awk/inplace.awk
-%exclude /usr/share/awk/join.awk
-%exclude /usr/share/awk/libintl.awk
-%exclude /usr/share/awk/noassign.awk
-%exclude /usr/share/awk/ord.awk
-%exclude /usr/share/awk/passwd.awk
-%exclude /usr/share/awk/processarray.awk
-%exclude /usr/share/awk/quicksort.awk
-%exclude /usr/share/awk/readable.awk
-%exclude /usr/share/awk/readfile.awk
-%exclude /usr/share/awk/rewind.awk
-%exclude /usr/share/awk/round.awk
-%exclude /usr/share/awk/shellquote.awk
-%exclude /usr/share/awk/strtonum.awk
-%exclude /usr/share/awk/walkarray.awk
-%exclude /usr/share/awk/zerofile.awk
 /usr/share/awk/have_mpfr.awk
 /usr/share/awk/intdiv0.awk
 /usr/share/awk/ns_passwd.awk
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/gawkapi.h
 /usr/share/man/man3/filefuncs.3am
 /usr/share/man/man3/fnmatch.3am
 /usr/share/man/man3/fork.3am
@@ -276,9 +247,8 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/gawk/COPYING
-/usr/share/package-licenses/gawk/extension_COPYING
-/usr/share/package-licenses/gawk/missing_d_COPYING.LIB
+/usr/share/package-licenses/gawk/0e8e850b0580fbaaa0872326cb1b8ad6adda9b0d
+/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
