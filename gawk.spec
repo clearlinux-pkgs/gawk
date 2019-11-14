@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 5.0.1
-Release  : 54
+Release  : 55
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz
 Source1 : https://mirrors.kernel.org/gnu/gawk/gawk-5.0.1.tar.xz.sig
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
 Requires: gawk-bin = %{version}-%{release}
 Requires: gawk-data = %{version}-%{release}
+Requires: gawk-info = %{version}-%{release}
 Requires: gawk-lib = %{version}-%{release}
 Requires: gawk-libexec = %{version}-%{release}
 Requires: gawk-license = %{version}-%{release}
@@ -63,21 +64,20 @@ Requires: gawk = %{version}-%{release}
 dev components for the gawk package.
 
 
-%package doc
-Summary: doc components for the gawk package.
-Group: Documentation
-Requires: gawk-man = %{version}-%{release}
-
-%description doc
-doc components for the gawk package.
-
-
 %package extras
 Summary: extras components for the gawk package.
 Group: Default
 
 %description extras
 extras components for the gawk package.
+
+
+%package info
+Summary: info components for the gawk package.
+Group: Default
+
+%description info
+info components for the gawk package.
 
 
 %package lib
@@ -126,13 +126,14 @@ man components for the gawk package.
 
 %prep
 %setup -q -n gawk-5.0.1
+cd %{_builddir}/gawk-5.0.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571202677
+export SOURCE_DATE_EPOCH=1573771964
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -152,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1571202677
+export SOURCE_DATE_EPOCH=1573771964
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp %{_builddir}/gawk-5.0.1/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -194,10 +195,6 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 /usr/share/man/man3/rwarray.3am
 /usr/share/man/man3/time.3am
 
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/info/*
-
 %files extras
 %defattr(-,root,root,-)
 /usr/share/awk/assert.awk
@@ -224,6 +221,12 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 /usr/share/awk/strtonum.awk
 /usr/share/awk/walkarray.awk
 /usr/share/awk/zerofile.awk
+
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/gawk.info
+/usr/share/info/gawkinet.info
+/usr/share/info/gawkworkflow.info
 
 %files lib
 %defattr(-,root,root,-)
