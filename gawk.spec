@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 5.1.0
-Release  : 56
+Release  : 57
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.0.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.0.tar.xz
 Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.0.tar.xz.sig
@@ -26,6 +26,7 @@ BuildRequires : gmp-dev
 BuildRequires : libc6-locale
 BuildRequires : ncurses-dev
 BuildRequires : readline-dev
+Patch1: 0001-Remove-en_US-latin1-test.patch
 
 %description
 This is GNU Awk 5.1.0. It is upwardly compatible with Brian Kernighan's
@@ -127,13 +128,14 @@ man components for the gawk package.
 %prep
 %setup -q -n gawk-5.1.0
 cd %{_builddir}/gawk-5.1.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586905118
+export SOURCE_DATE_EPOCH=1608237839
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -150,10 +152,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1586905118
+export SOURCE_DATE_EPOCH=1608237839
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp %{_builddir}/gawk-5.1.0/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
