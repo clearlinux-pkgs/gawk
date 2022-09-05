@@ -1,5 +1,5 @@
 PKG_NAME := gawk
-URL = https://mirrors.kernel.org/gnu/gawk/gawk-5.1.1.tar.xz
+URL = https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common

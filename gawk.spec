@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDF597815937EC0D2 (arnold@skeeve.com)
 #
 Name     : gawk
-Version  : 5.1.1
-Release  : 58
-URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.1.tar.xz
-Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.1.tar.xz
-Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.1.1.tar.xz.sig
+Version  : 5.2.0
+Release  : 59
+URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
+Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
+Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -28,7 +28,7 @@ BuildRequires : ncurses-dev
 BuildRequires : readline-dev
 
 %description
-This is GNU Awk 5.1.1. It is upwardly compatible with Brian Kernighan's
+This is GNU Awk 5.2.0. It is upwardly compatible with Brian Kernighan's
 version of Unix awk.  It is almost completely compliant with the
 2018 POSIX 1003.1 standard for awk. (See the note below about POSIX.)
 
@@ -125,15 +125,15 @@ man components for the gawk package.
 
 
 %prep
-%setup -q -n gawk-5.1.1
-cd %{_builddir}/gawk-5.1.1
+%setup -q -n gawk-5.2.0
+cd %{_builddir}/gawk-5.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642638217
+export SOURCE_DATE_EPOCH=1662357544
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -153,12 +153,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1642638217
+export SOURCE_DATE_EPOCH=1662357544
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
-cp %{_builddir}/gawk-5.1.1/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/gawk-5.1.1/extension/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
-cp %{_builddir}/gawk-5.1.1/missing_d/COPYING.LIB %{buildroot}/usr/share/package-licenses/gawk/0e8e850b0580fbaaa0872326cb1b8ad6adda9b0d
+cp %{_builddir}/gawk-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/gawk-%{version}/extension/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+cp %{_builddir}/gawk-%{version}/missing_d/COPYING.LIB %{buildroot}/usr/share/package-licenses/gawk/0e8e850b0580fbaaa0872326cb1b8ad6adda9b0d
 %make_install
 %find_lang gawk
 ## install_append content
@@ -172,7 +172,8 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 %defattr(-,root,root,-)
 /usr/bin/awk
 /usr/bin/gawk
-/usr/bin/gawk-5.1.1
+/usr/bin/gawk-5.2.0
+/usr/bin/gawkbug
 
 %files data
 %defattr(-,root,root,-)
@@ -228,6 +229,7 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 /usr/share/info/gawk.info
 /usr/share/info/gawkinet.info
 /usr/share/info/gawkworkflow.info
+/usr/share/info/pm-gawk.info
 
 %files lib
 %defattr(-,root,root,-)
@@ -258,6 +260,8 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 %defattr(0644,root,root,0755)
 /usr/share/man/man1/awk.1
 /usr/share/man/man1/gawk.1
+/usr/share/man/man1/gawkbug.1
+/usr/share/man/man1/pm-gawk.1
 
 %files locales -f gawk.lang
 %defattr(-,root,root,-)
