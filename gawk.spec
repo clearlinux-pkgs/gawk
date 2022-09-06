@@ -6,7 +6,7 @@
 #
 Name     : gawk
 Version  : 5.2.0
-Release  : 59
+Release  : 60
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
 Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz.sig
@@ -26,6 +26,7 @@ BuildRequires : gmp-dev
 BuildRequires : libc6-locale
 BuildRequires : ncurses-dev
 BuildRequires : readline-dev
+Patch1: fix-double-free.patch
 
 %description
 This is GNU Awk 5.2.0. It is upwardly compatible with Brian Kernighan's
@@ -127,13 +128,14 @@ man components for the gawk package.
 %prep
 %setup -q -n gawk-5.2.0
 cd %{_builddir}/gawk-5.2.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662357544
+export SOURCE_DATE_EPOCH=1662491203
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -153,7 +155,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1662357544
+export SOURCE_DATE_EPOCH=1662491203
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp %{_builddir}/gawk-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
