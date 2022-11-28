@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDF597815937EC0D2 (arnold@skeeve.com)
 #
 Name     : gawk
-Version  : 5.2.0
-Release  : 60
-URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
-Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz
-Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.0.tar.xz.sig
+Version  : 5.2.1
+Release  : 61
+URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.1.tar.xz
+Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.1.tar.xz
+Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0+
@@ -26,10 +26,9 @@ BuildRequires : gmp-dev
 BuildRequires : libc6-locale
 BuildRequires : ncurses-dev
 BuildRequires : readline-dev
-Patch1: fix-double-free.patch
 
 %description
-This is GNU Awk 5.2.0. It is upwardly compatible with Brian Kernighan's
+This is GNU Awk 5.2.1. It is upwardly compatible with Brian Kernighan's
 version of Unix awk.  It is almost completely compliant with the
 2018 POSIX 1003.1 standard for awk. (See the note below about POSIX.)
 
@@ -126,16 +125,15 @@ man components for the gawk package.
 
 
 %prep
-%setup -q -n gawk-5.2.0
-cd %{_builddir}/gawk-5.2.0
-%patch1 -p1
+%setup -q -n gawk-5.2.1
+cd %{_builddir}/gawk-5.2.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662491203
+export SOURCE_DATE_EPOCH=1669620538
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -155,7 +153,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1662491203
+export SOURCE_DATE_EPOCH=1669620538
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gawk
 cp %{_builddir}/gawk-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gawk/8624bcdae55baeef00cd11d5dfcfa60f68710a02
@@ -174,7 +172,7 @@ ln -s gawk.1 %{buildroot}/usr/share/man/man1/awk.1
 %defattr(-,root,root,-)
 /usr/bin/awk
 /usr/bin/gawk
-/usr/bin/gawk-5.2.0
+/usr/bin/gawk-5.2.1
 /usr/bin/gawkbug
 
 %files data

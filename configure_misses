@@ -4,6 +4,7 @@ Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: GetSystemTimeAsFileTime
 Configure miss: __etoa_l
+Configure miss: bool, true, false
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: how to get the file descriptor associated with an open DIR*

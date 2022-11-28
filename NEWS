@@ -4,6 +4,28 @@
    are permitted in any medium without royalty provided the copyright
    notice and this notice are preserved.
 
+Changes from 5.2.0 to 5.2.1
+---------------------------
+
+1. Infrastructure upgrades: PMA version Avon 8.
+
+2. Issues related to the sign of NaN and Inf values on RiscV have
+   been fixed; gawk now gives identical results on that platform as
+   it does on others.
+
+3. A few issues with the debugger have been fixed.
+
+4. More subtle issues with untyped array elements being passed to
+   functions have been fixed.
+
+5. The rwarray extension's readall() function has had some bugs fixed.
+
+6. The PMA allocator is now supported on FreeBSD, OpenBSD and Linux on S/390x.
+   Is is now supported also on both Intel and M1 macOS systems.
+
+7. There have been several minor code cleanups and bug fixes. See the
+   ChangeLog for details.
+
 Changes from 5.1.x to 5.2.0
 ---------------------------
 
