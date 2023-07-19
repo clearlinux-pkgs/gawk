@@ -7,7 +7,7 @@
 #
 Name     : gawk
 Version  : 5.2.2
-Release  : 63
+Release  : 64
 URL      : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.2.tar.xz
 Source0  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.2.tar.xz
 Source1  : https://mirrors.kernel.org/gnu/gawk/gawk-5.2.2.tar.xz.sig
