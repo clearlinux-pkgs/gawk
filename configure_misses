@@ -1,21 +1,42 @@
 Configure miss: 32-bit host C ABI
 Configure miss: 32-bit host C ABI
+Configure miss: 32-bit host C ABI
+Configure miss: 32-bit host C ABI
+Configure miss: CFLocaleCopyPreferredLanguages
+Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: GetSystemTimeAsFileTime
+Configure miss: GetSystemTimeAsFileTime
 Configure miss: __etoa_l
+Configure miss: __etoa_l
+Configure miss: bool, true, false
 Configure miss: bool, true, false
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: how to get the file descriptor associated with an open DIR*
 Configure miss: how to get the file descriptor associated with an open DIR*
 Configure miss: if we are using EBCDIC
+Configure miss: if we are using EBCDIC
 Configure miss: library containing ismod
+Configure miss: library containing ismod
+Configure miss: libsigsegv
 Configure miss: libsigsegv
 Configure miss: special development options
 Configure miss: special development options
+Configure miss: special development options
+Configure miss: special development options
+Configure miss: stropts.h
 Configure miss: stropts.h
 Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
 Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
+Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
+Configure miss: whether mpfr via "-lmpfr -lgmp" is present and usable
 Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: z/OS USS compilation
+Configure miss: z/OS USS compilation
 Configure miss: z/OS USS compilation
 Configure miss: z/OS USS compilation
