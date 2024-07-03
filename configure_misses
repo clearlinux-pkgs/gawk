@@ -22,8 +22,6 @@ Configure miss: if we are using EBCDIC
 Configure miss: if we are using EBCDIC
 Configure miss: library containing ismod
 Configure miss: library containing ismod
-Configure miss: libsigsegv
-Configure miss: libsigsegv
 Configure miss: special development options
 Configure miss: special development options
 Configure miss: special development options

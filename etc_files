@@ -1,5 +1,5 @@
-/builddir/build/BUILDROOT/gawk-5.2.2-67.x86_64/etc/:
-/builddir/build/BUILDROOT/gawk-5.2.2-67.x86_64/etc/profile.d:
+/etc/:
+/etc/profile.d:
 gawk.csh
 gawk.sh
 profile.d
