@@ -1,8 +1,37 @@
-   Copyright (C) 2019, 2020, 2021, 2022, 2023 Free Software Foundation, Inc.
+   Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024
+   Free Software Foundation, Inc.
    
    Copying and distribution of this file, with or without modification,
    are permitted in any medium without royalty provided the copyright
    notice and this notice are preserved.
+
+Changes from 5.3.0 to 5.3.1
+---------------------------
+
+1. More subtle issues related to uninitialized array elements have
+   been fixed.
+
+2. A number of bugs in the debugger related to handling of arrays
+   have been fixed.
+
+3. Some subtle bugs in the API have been fixed.
+
+4. Use of MPFR is now possible again on 32-bit Power PC Mac systems.
+
+5. Race conditions around broken pipes for system() and read and write
+   pipes should now be closed off.
+
+6. Support for OSF/1 has been removed.
+
+7. The never-documented --nostalgia option has been removed. It was
+   causing bug reports.
+
+8. The implementation of printf/sprintf has been thoroughly reworked
+   in order to make the code more maintainable and to fix a goodly
+   number of corner cases.
+
+9. As usual, there have been several minor code cleanups and bug fixes.
+   See the ChangeLog for details.
 
 Changes from 5.2.x to 5.3.0
 ---------------------------
@@ -44,7 +73,7 @@ Changes from 5.2.2 to 5.2.x
    features, see the manual or its man page. As a result, the
    readdir_test.c extension has been removed.
 
-2. We have a new translation: Ukranian.
+2. We have a new translation: Ukrainian.
 
 3. Several subtle issues related to null regexp matches around
    multibyte characters have been fixed.
