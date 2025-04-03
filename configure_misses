@@ -8,6 +8,8 @@ Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: GetSystemTimeAsFileTime
 Configure miss: GetSystemTimeAsFileTime
+Configure miss: _NSGetExecutablePath
+Configure miss: _NSGetExecutablePath
 Configure miss: __etoa_l
 Configure miss: __etoa_l
 Configure miss: bool, true, false
